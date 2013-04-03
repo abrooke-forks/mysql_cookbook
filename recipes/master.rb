@@ -18,7 +18,6 @@ ruby_block "store_mysql_master_status" do
       m.query("show master status") do |row|
       row.each_hash do |h|
         node.set[:mysql][:master_file] = h['File']
-        Chef::Log.info "Hfile #{h['file']}"
         node.set[:mysql][:master_position] = h['Position']
       end
     end
